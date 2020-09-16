@@ -8,6 +8,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const jest = require("jest")
 
 //------------- Our Variables -----------------------------------------//
 let Team = [];
@@ -105,6 +106,8 @@ const buildTeam = {
 
 console.log(buildTeam)
 
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -117,9 +120,9 @@ console.log(buildTeam)
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
-// employee type.
+// employee type. 
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
+//(+)  HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
