@@ -12,57 +12,6 @@ const render = require("./lib/htmlRenderer");
 
 
 
-function createTeam() {
-    return inquirer.prompt([{
-        type: "list",
-        name: "choose employee role:",
-        choices: [
-            "Manager",
-            "Engineer",
-            "Intern",
-            "I don't want to add any more employees."
-        ]
-    }])
-}
-
-function createManager() {
-    return inquirer.prompt([{
-            type: "input",
-            name: "ManagerName",
-            message: "What is your manager's name?"
-        },
-        {
-            type: "input",
-            name: "managerIDnumber",
-            message: "What is your manager's ID number?"
-        },
-
-        {
-            type: "input",
-            name: "ManagerEmail",
-            message: "What is your manager's email?"
-        },
-        {
-            type: "input",
-            name: "ManagerOfficeNumber",
-            message: "What is your manager's office number?"
-        },
-    ]).then(answers => {
-        const manager = new Manager(answers.ManagerName, answers.managerIDNumber, answers.ManagerEmail, answers.ManagerOfficrNumber)
-        Team.push(manager)
-        createTeam();
-    })
-}
-
-
-
-function createEngineer() {}
-
-function createIntern() {}
-
-function createEmployee() {}
-console.log("Enter the manager's info")
-createManager();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
