@@ -12,6 +12,18 @@ const render = require("./lib/htmlRenderer");
 
 
 
+function createTeam() {
+    return inquirer.prompt([{
+        type: "list",
+        name: "choose employee role:",
+        choices: [
+            "Manager",
+            "Engineer",
+            "Intern",
+            "I don't want to add any more employees."
+        ]
+    }])
+}
 
 function createManager() {
     return inquirer.prompt([{
@@ -35,17 +47,20 @@ function createManager() {
             name: "ManagerOfficeNumber",
             message: "What is your manager's office number?"
         },
-    ])
+    ]).then(answers => {
+        const manager = new Manager(answers.ManagerName, answers.managerIDNumber, answers.ManagerEmail, answers.ManagerOfficrNumber)
+        Team.push(manager)
+        createTeam();
+    })
 }
 
 
-function createEmployee()
 
-function createEngineer()
+function createEngineer() {}
 
-function createIntern()
+function createIntern() {}
 
-
+function createEmployee() {}
 console.log("Enter the manager's info")
 createManager();
 
