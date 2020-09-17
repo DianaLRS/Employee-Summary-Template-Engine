@@ -17,7 +17,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 //----------------Render----------------------------------------------//
 const render = require("./lib/htmlRenderer");
-const Choice = require("inquirer/lib/objects/choice");
+
 
 //-------------------Our Code ---------------------------------------//
 
@@ -25,6 +25,8 @@ const Choice = require("inquirer/lib/objects/choice");
 // (+)Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+
+var managerCounter = 0;
 
 
 const teamMembers = {
@@ -100,6 +102,27 @@ const teamMembers = {
     ]
 }
 
+
+
+function start() {
+
+
+    inquirer.prompt(addNew).then((answer) => {
+
+        if (answer.addMember == "Yes") {
+            addRole();
+        } else {
+
+
+
+            fs.writeFileSync(outputPath, render(Team), "utf-8");
+            process.exit(0);
+        }
+
+
+    })
+
+}
 const addNew = {
     type: "List",
     message: "Do you want to add another employee? ",
@@ -107,36 +130,57 @@ const addNew = {
     choices: ["Yes", "No"],
 }
 
-console.log(teamMembers)
+
 
 //--------------Run the APP -------------------------------//
-function createTeam() {
+function addRole() {
     inquirer.prompt([{
         type: "list",
         message: "Choose the employee's role:",
         name: "employeeChoice",
         choices: ["Manager", "Engineer", "Intern", ]
     }]).then((answer) => {
-        if (answer.employeeChoice === "Manager") {
+        if (answer.employeeChoice === "Manager" && managerCounter < 1) {
+            managerCounter++
             // console.log("hey boss")
-            inquirer.prompt(teamMembers.Manager)
+            inquirer.prompt(teamMembers.Manager).then((results) => {
 
+
+                const manager = new Manager(results.managerName, results.managerId, results.managerEmail, results.managerOfficeNumber);
+                Team.push(manager);
+                start();
+
+            })
+        } else if (answer.employeeChoice === "Engineer") {
+
+
+            inquirer.prompt(teamMembers.Engineer).then((results) => {
+
+                const engineer = new Manager(results.managerName, results.managerId, results.managerEmail, results.managerOfficeNumber);
+                Team.push(engineer);
+
+                start();
+
+            })
+        } else if (answer.employeeChoice === "Intern") {
+
+            inquirer.prompt(teamMembers.Intern).then((results) => {
+
+                const intern = new Manager(results.managerName, results.managerId, results.managerEmail, results.managerOfficeNumber);
+                Team.push(intern);
+                start();
+
+            })
+        } else {
+            start();
         }
-        if (answer.employeeChoice === "Engineer") {
-            inquirer.prompt(teamMembers.Engineer)
-        }
-        if (answer.employeeChoice === "Intern") {
-            inquirer.prompt(teamMembers.Intern)
-        }
+
+
     })
 }
 
 
-
-
-
-createTeam();
-
+start();
 
 
 // After the user has input all employees desired, call the `render` function (required
