@@ -120,6 +120,7 @@ function createTeam() {
         if (answer.employeeChoice === "Manager") {
             // console.log("hey boss")
             inquirer.prompt(teamMembers.Manager)
+
         }
         if (answer.employeeChoice === "Engineer") {
             inquirer.prompt(teamMembers.Engineer)
@@ -132,28 +133,10 @@ function createTeam() {
 
 
 
-// function addEmployee() {
-//     inquirer.prommpt([{
-//         type: "List",
-//         message: "Do you want to add another employee? ",
-//         name: "addMember",
-//         choices: ["Yes", "No"],
-//     }]).then((answer) => {
-//         if (answer.addMember === "Yes") {
-//             console.log("add more!")
-//                 //         inquirer.prompt([{
-//                 //             type: "list",
-//                 //             message: "Choose the employee's role:",
-//                 //             name: "employeeChoice",
-//                 //             choices: ["Engineer", "Intern"]
-//                 //         }])
 
-//         }
-//     })
-// }
 
 createTeam();
-// addEmployee();
+
 
 
 // After the user has input all employees desired, call the `render` function (required
