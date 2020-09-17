@@ -1,5 +1,5 @@
 // ------------------------Classes------------------------------------//
-const Employee = require("./lib/Employee")
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -17,21 +17,17 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 //----------------Render----------------------------------------------//
 const render = require("./lib/htmlRenderer");
+const Choice = require("inquirer/lib/objects/choice");
 
 //-------------------Our Code ---------------------------------------//
 
 
-// Write code to use inquirer to gather information about the development team members,
+// (+)Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-const employeeType = {
-    type: "list",
-    message: "Choose the employee's role:",
-    name: ["Manager", "Engineer", "Intern", ]
-}
 
-console.log(employeeType)
 
-const buildTeam = {
+
+const teamMembers = {
     Manager: [{
             type: "input",
             message: "What is the manager's name? ",
@@ -104,8 +100,60 @@ const buildTeam = {
     ]
 }
 
-console.log(buildTeam)
+const addNew = {
+    type: "List",
+    message: "Do you want to add another employee? ",
+    name: "addMember",
+    choices: ["Yes", "No"],
+}
 
+console.log(teamMembers)
+
+//--------------Run the APP -------------------------------//
+function createTeam() {
+    inquirer.prompt([{
+        type: "list",
+        message: "Choose the employee's role:",
+        name: "employeeChoice",
+        choices: ["Manager", "Engineer", "Intern", ]
+    }]).then((answer) => {
+        if (answer.employeeChoice === "Manager") {
+            // console.log("hey boss")
+            inquirer.prompt(teamMembers.Manager)
+        }
+        if (answer.employeeChoice === "Engineer") {
+            inquirer.prompt(teamMembers.Engineer)
+        }
+        if (answer.employeeChoice === "Intern") {
+            inquirer.prompt(teamMembers.Intern)
+        }
+    })
+}
+
+
+
+// function addEmployee() {
+//     inquirer.prommpt([{
+//         type: "List",
+//         message: "Do you want to add another employee? ",
+//         name: "addMember",
+//         choices: ["Yes", "No"],
+//     }]).then((answer) => {
+//         if (answer.addMember === "Yes") {
+//             console.log("add more!")
+//                 //         inquirer.prompt([{
+//                 //             type: "list",
+//                 //             message: "Choose the employee's role:",
+//                 //             name: "employeeChoice",
+//                 //             choices: ["Engineer", "Intern"]
+//                 //         }])
+
+//         }
+//     })
+// }
+
+createTeam();
+// addEmployee();
 
 
 // After the user has input all employees desired, call the `render` function (required
@@ -118,7 +166,7 @@ console.log(buildTeam)
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
+// (+)HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
 // employee type. 
 
