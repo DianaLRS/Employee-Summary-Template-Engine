@@ -81,18 +81,18 @@ const teamMembers = {
     Intern: [{
             type: "input",
             message: "What is the intern's name? ",
-            name: "employeeName"
+            name: "internName"
         },
         {
             type: "input",
             message: "What is the intern's id? ",
-            name: "employeeId"
+            name: "internId"
         },
 
         {
             type: "input",
             message: "What is the intern's email? ",
-            name: "employeeEmail"
+            name: "internEmail"
         }, {
             type: "input",
             message: "What is the intern's school? ",
@@ -156,7 +156,7 @@ function addRole() {
 
             inquirer.prompt(teamMembers.Engineer).then((results) => {
 
-                const engineer = new Manager(results.managerName, results.managerId, results.managerEmail, results.managerOfficeNumber);
+                const engineer = new Manager(results.engineerName, results.engineerId, results.engineerEmail, results.Github);
                 Team.push(engineer);
 
                 start();
@@ -166,7 +166,7 @@ function addRole() {
 
             inquirer.prompt(teamMembers.Intern).then((results) => {
 
-                const intern = new Manager(results.managerName, results.managerId, results.managerEmail, results.managerOfficeNumber);
+                const intern = new Manager(results.internName, results.internId, results.internEmail, results.school);
                 Team.push(intern);
                 start();
 
