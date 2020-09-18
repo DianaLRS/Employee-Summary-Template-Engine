@@ -25,4 +25,4 @@ The following is needed to run the test: node app.js
 # Questions
 If you have any questions about the repo, open an issue or contact DianaLRS directly at : dlramos194@gmail.com.
 
-
+[!Screenshot](./images/team-gen.png)
