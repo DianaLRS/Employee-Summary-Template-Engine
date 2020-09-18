@@ -14,7 +14,7 @@ The following necessary dependencies must be installed to run the application pr
 # Usage
 In order to use this app, install the dependencies and run the app in the terminal. Click on the video for a complete run through. 
 
-[![Watch the video](https://img.youtube.com/vi/<P-oSZaAwsY4>/hqdefault.jpg)](https://youtu.be/P-oSZaAwsY4)
+[![Demo-Video](https://img.youtube.com/vi/P-oSZaAwsY4/0.jpg)](https://www.youtube.com/watch?v=P-oSZaAwsY4&ab)
 # License
 This project is licensed under the  license. 
 None
@@ -25,4 +25,4 @@ The following is needed to run the test: node app.js
 # Questions
 If you have any questions about the repo, open an issue or contact DianaLRS directly at : dlramos194@gmail.com.
 
-[!Screenshot](./images/team-gen.png)
+![screenshot](/images/team-gen.png?raw=true "Example")
